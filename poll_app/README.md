@@ -1,4 +1,4 @@
-# `Poll_app REACT + VITE + MOTOKO`
+# `Poll_app (REACT + VITE + MOTOKO)`
 
 
 <img src="./Poll_app_ICP.png" width="800px" height="1000px" />
