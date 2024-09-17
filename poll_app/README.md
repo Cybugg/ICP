@@ -16,7 +16,7 @@ To learn more before you start working with `Poll_app`, see the following docume
 If you want to start working on your project right away, you might want to try the following commands:
 
 ```bash
-cd hello_world/
+cd poll_app/
 dfx help
 dfx canister --help
 ```
