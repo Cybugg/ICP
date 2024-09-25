@@ -1,11 +1,13 @@
 import {react} from "react";
+import Connect from "./connect";
 
 
 
 
 function Hero() {
     return (
-      <main className='h-[80%] w-full '>
+      <section className='h-[80%] w-full relative'>
+        <Connect />
         <div className="bg-black fixed z-[-10] w-full h-screen top-0">
            <video playsInline muted loop preload='none' poster='/static/images/hero.png' autoPlay key={"/static/Images/heroThumbnail.jpg"} className='w-full h-screen object-cover object-center top-0 md:blur-sm bg-black md:opacity-70' >
                 <source type='video/mp4' src='/static/videos/hero.mp4'   />
@@ -32,7 +34,7 @@ function Hero() {
               <button className=" px-5 md:px-8 bg-[rgb(25,25,25)] border border-[rgb(158,158,158)]">Explore </button>
               <button className="px-5 md:px-8 bg-orange-600 ">connect</button>
             </div>
-      </main>
+      </section>
     );
   }
   

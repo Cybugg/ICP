@@ -7,7 +7,7 @@ import {MdOutlineGames, MdOutlineLeaderboard} from "react-icons/md";
 
 function Nav() {
     return (
-      <main className='relative'>
+      <nav className='relative'>
         {/* Mobile */}
         <div className="w-full lg:hidden bg-gray-900 bg-opacity-50 backdrop-blur-2xl z-50 border-b border-b-orange-700">
      <div className="container mx-auto p-5 flex items-center justify-between">
@@ -42,16 +42,15 @@ function Nav() {
       </div>
       {/* Nav Links */}
       <ul className="mx-5 text-white mt-5 flex flex-col gap-5 text-xl">
-        <li className=" bg-gray-700 p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><RiHome6Fill/>Home</li>
-        <li className="p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineGames/>Games</li>
-      
-        <li className="p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><GiPlagueDoctorProfile />Profile</li>  <li className="p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineLeaderboard/>Leaderboard</li>
-        <li className="p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><IoBag />Marketplace</li>
-             <button className="px-5 py-1 mt-96 md:px-8 bg-orange-600 text-white mb-12">connect</button>
+        <li className="hover:text-2xl transition-all ease-in bg-gray-700 p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><RiHome6Fill/>Home</li>
+        <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineGames/>Games</li>
+        <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><GiPlagueDoctorProfile />Profile</li>  <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineLeaderboard/>Leaderboard</li>
+        <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><IoBag />Marketplace</li>
+             <button className="px-5 py-1 mt-96 md:px-8 bg-orange-600 text-white mb-12">CONNECT </button>
       </ul>
 
       </div>
-      </main>
+      </nav>
     );
   }
   
