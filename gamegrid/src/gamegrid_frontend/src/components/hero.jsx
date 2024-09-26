@@ -4,10 +4,10 @@ import Connect from "./connect";
 
 
 
-function Hero() {
+function Hero({setActivateSignIn,activateSignIn}) {
     return (
       <section className='h-[80%] w-full relative'>
-        <Connect />
+       { activateSignIn && <Connect setActivateSignIn={setActivateSignIn} />}
         <div className="bg-black fixed z-[-10] w-full h-screen top-0">
            <video playsInline muted loop preload='none' poster='/static/images/hero.png' autoPlay key={"/static/Images/heroThumbnail.jpg"} className='w-full h-screen object-cover object-center top-0 md:blur-sm bg-black md:opacity-70' >
                 <source type='video/mp4' src='/static/videos/hero.mp4'   />
@@ -32,7 +32,7 @@ function Hero() {
             {/* Buttons */}
             <div className="mt-5 flex w-full gap-5 justify-center items-center text-white md:text-3xl">
               <button className=" px-5 md:px-8 bg-[rgb(25,25,25)] border border-[rgb(158,158,158)]">Explore </button>
-              <button className="px-5 md:px-8 bg-orange-600 ">connect</button>
+              <button onClick={()=>setActivateSignIn(true)} className="px-5 md:px-8 bg-orange-600 ">Sign in</button>
             </div>
       </section>
     );

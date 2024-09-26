@@ -3,9 +3,10 @@ import {IoBag, IoMenu} from "react-icons/io5";
 import {RiHome6Fill} from "react-icons/ri";
 import {GiPlagueDoctorProfile} from "react-icons/gi";
 import {MdOutlineGames, MdOutlineLeaderboard} from "react-icons/md";
+import { FaScroll } from "react-icons/fa";
 
 
-function Nav() {
+function Nav({setActivateSignIn}) {
     return (
       <nav className='relative'>
         {/* Mobile */}
@@ -43,10 +44,11 @@ function Nav() {
       {/* Nav Links */}
       <ul className="mx-5 text-white mt-5 flex flex-col gap-5 text-xl">
         <li className="hover:text-2xl transition-all ease-in bg-gray-700 p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><RiHome6Fill/>Home</li>
+        <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><FaScroll />Quests</li>
         <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineGames/>Games</li>
         <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><GiPlagueDoctorProfile />Profile</li>  <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><MdOutlineLeaderboard/>Leaderboard</li>
         <li className="hover:text-2xl transition-all ease-in p-1 px-5 rounded border border-gray-500 cursor-pointer flex gap-1 items-center "><IoBag />Marketplace</li>
-             <button className="px-5 py-1 mt-96 md:px-8 bg-orange-600 text-white mb-12">CONNECT </button>
+             <button onClick={()=>setActivateSignIn(true)} className="px-5 py-1 mt-96 md:px-8 bg-orange-600 text-white mb-12">Sign in</button>
       </ul>
 
       </div>

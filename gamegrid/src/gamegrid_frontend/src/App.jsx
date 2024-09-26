@@ -5,6 +5,7 @@ import Nav from './components/nav.jsx';
 
 function App() {
   const [greeting, setGreeting] = useState('');
+  const [activateSignIn,setActivateSignIn] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -17,8 +18,8 @@ function App() {
 
   return (
     <main className='relative h-screen flex flex-col lg:flex-row'>
-      <Nav />
-      <Hero />
+      <Nav setActivateSignIn={setActivateSignIn} />
+      <Hero setActivateSignIn={setActivateSignIn} activateSignIn={activateSignIn}/>
     </main>
   );
 }
