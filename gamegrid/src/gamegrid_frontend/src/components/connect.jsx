@@ -1,11 +1,12 @@
 import {react} from "react";
+import { IoIosArrowBack } from "react-icons/io";
 
 
 
 
 function Connect({setActivateSignIn}) {
     return (
-      <section className='absolute flex items-center justify-center w-full h-screen bg-black bg-opacity-70 transition-all ease-in-out' onClick={()=>setActivateSignIn(false)} >
+      <section className='absolute flex items-center justify-center w-full h-screen bg-black bg-opacity-70 transition-all ease-in-out duration-500'  >
        <div className="bg-gray-900 text-center text-white gap-2 flex flex-col items-center justify-center mx-5 p-8 py-12 max-w-[36rem] border border-gray-600 hover:border-gray-500 transition-all ease-in rounded" style={{
         background:"url(/static/images/connect.png)",
         backgroundSize:"cover"
@@ -20,7 +21,10 @@ function Connect({setActivateSignIn}) {
         </div>
         {/* CTA Button */}
         <button className="bg-white mt-5 font-semibold text-black flex gap-2 items-center px-5 m-3 rounded border border-gray-700">
-        <img src="/static/images/icp.jpeg" alt="icp" className="w-8 h-6" /> Internet Identity
+        <img src="/static/images/icp.jpeg" alt="icp" className="w-8 h-6" /> <span className="text-sm lg:text-lg">Internet Identity</span>
+        </button>
+        <button className="bg-opacity-40 p-2 rounded-full self-end bg-gray-300 backdrop-blur-lg border text-sm lg:text-lg flex items-center px-3" onClick={()=>setActivateSignIn(false)}>
+        <IoIosArrowBack />  <span className="text-sm font-bold">Back</span>
         </button>
        </div>
       </section>
