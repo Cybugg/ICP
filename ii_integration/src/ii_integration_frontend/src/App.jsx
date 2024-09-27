@@ -1,29 +1,76 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ii_integration_backend } from 'declarations/ii_integration_backend';
+import { Actor, HttpAgent } from "@dfinity/agent";
+import { AuthClient } from "@dfinity/auth-client";
 
+const webapp_id = process.env.WHOAMI_CANISTER_ID;
+
+// The interface of the whoami canister
+const webapp_idl = ({ IDL }) => {
+  return IDL.Service({ whoami: IDL.Func([], [IDL.Principal], ["query"]) });
+};
+export const init = ({ IDL }) => {
+  return [];
+};
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [iiUrl, setiiurl] = useState("");
+  const [identity, setIdentity] = useState("");
+  const [principal, setPrincipal] =useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    ii_integration_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
+  useEffect(
+    ()=>{
+      let iiUrl;
+      if (process.env.DFX_NETWORK === "local") {
+       setiiurl(`http://localhost:4943/?canisterId=${process.env.II_CANISTER_ID}`);
+      } else if (process.env.DFX_NETWORK === "ic") {
+       setiiurl(`https://${process.env.II_CANISTER_ID}.ic0.app`);
+      } else {
+       setiiurl(`https://${process.env.II_CANISTER_ID}.dfinity.network`);
+      }
+    },[]
+  )
+
+  async function handleLogin (){
+ // When the user clicks, we start the login process.
+  // First we have to create an AuthClient.
+  const authClient = await AuthClient.create();
+// Call authClient.login(...) to login with Internet Identity. This will open a new tab
+  // with the login prompt. The code has to wait for the login process to complete.
+  // We can either use the callback functions directly or wrap them in a promise.
+  await new Promise((resolve, reject) => {
+    authClient.login({
+      identityProvider: iiUrl,
+      onSuccess: resolve,
+      onError: reject,
     });
-    return false;
-  }
+  });
+
+   // At this point we're authenticated, and we can get the identity from the auth client:
+   const identity = authClient.getIdentity();
+   setIdentity(identity);
+    // Using the identity obtained from the auth client, we can create an agent to interact with the IC.
+  const agent = new HttpAgent({ identity });
+   // Using the interface description of our webapp, we create an actor that we use to call the service methods.
+ const webapp = Actor.createActor(webapp_idl, {
+  agent,
+  canisterId: webapp_id,
+});
+// Call whoami which returns the principal (user id) of the current user.
+const principal = await webapp.whoami().then((data)=>setPrincipal(data)).catch(err=>console.log(err));
+  };
+
 
   return (
     <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
+  <form>
+        <button id="login" onClick={handleLogin}>Login!</button>
       </form>
-      <section id="greeting">{greeting}</section>
+      <br />
+      <form>
+        <button id="whoAmI">Who Am I</button>
+      </form>
+      <section id="principal">Principal: {principal}</section>
+      <section id="identity">Identity: {identity}</section>
     </main>
   );
 }
