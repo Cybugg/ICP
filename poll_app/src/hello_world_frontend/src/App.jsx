@@ -9,7 +9,7 @@ function App() {
   const [course, setCourse] = useState("MEE205");
   const [results, setResults] = useState([]);
 
-  // Get the results from the backend
+  // Get the questions from the backend
   const fetchQuestion = async () => {
     try {
       setLoading(true);
